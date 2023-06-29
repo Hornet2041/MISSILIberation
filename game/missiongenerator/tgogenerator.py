@@ -328,10 +328,8 @@ class MissileSiteGenerator(GroundObjectGenerator):
                 targets = self.possible_missile_targets()
                 if targets:
                     target = random.choice(targets)
-                    real_target = target.point_from_heading(
-                        Heading.random().degrees, random.randint(0, 2500)
                     )
-                    vg.points[0].add_task(FireAtPoint(real_target))
+                    vg.points[0].add_task(FireAtPoint(target))
                     logging.info("Set up fire task for missile group.")
                 else:
                     logging.info(
@@ -353,6 +351,12 @@ class MissileSiteGenerator(GroundObjectGenerator):
                 distance = cp.position.distance_to_point(self.ground_object.position)
                 if distance < self.missile_site_range:
                     targets.append(cp.position)
+        # New code to add TheaterGroundObject targets.
+        for g_object in self.game.theater.ground_objects:
+            if g_object.friendly != self.ground_object.friendly:
+                distance = g_object.position.distance_to_point(self.ground_object.position)
+                if distance < self.missile_site_range:
+                    targets.append(g_object.position)
         return targets
 
     @property
