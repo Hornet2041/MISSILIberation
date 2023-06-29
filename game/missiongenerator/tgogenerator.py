@@ -53,7 +53,7 @@ from game.radio.tacan import TacanBand, TacanChannel, TacanRegistry, TacanUsage
 from game.runways import RunwayData
 from game.theater import ControlPoint, TheaterGroundObject, TheaterUnit
 from game.theater.theatergroundobject import (
-    CarrierGroundObject,
+    ,
     GenericCarrierGroundObject,
     LhaGroundObject,
     MissileSiteGroundObject,
@@ -61,6 +61,7 @@ from game.theater.theatergroundobject import (
 from game.theater.theatergroup import IadsGroundGroup, SceneryUnit
 from game.unitmap import UnitMap
 from game.utils import Heading, feet, knots, mps
+from missiongenerator.waypointbuilder import StrikeTarge
 
 if TYPE_CHECKING:
     from game import Game
@@ -352,7 +353,7 @@ class MissileSiteGenerator(GroundObjectGenerator):
                     targets.append(cp.position)
         # New code to add TheaterGroundObject targets.
         for g_object in self.game.theater.ground_objects:
-            if g_object.friendly != self.ground_object.friendly:
+            if g_object.hostile = is_friendly(to_player=False):
                 distance = g_object.position.distance_to_point(self.ground_object.position)
                 if distance < self.missile_site_range:
                     targets.append(g_object.position)
@@ -694,7 +695,7 @@ class TgoGenerator:
 
             for ground_object in cp.ground_objects:
                 generator: GroundObjectGenerator
-                if isinstance(ground_object, CarrierGroundObject):
+                if isinstance(ground_object, ):
                     generator = CarrierGenerator(
                         ground_object,
                         cp,
