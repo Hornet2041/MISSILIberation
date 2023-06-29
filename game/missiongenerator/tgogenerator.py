@@ -53,7 +53,7 @@ from game.radio.tacan import TacanBand, TacanChannel, TacanRegistry, TacanUsage
 from game.runways import RunwayData
 from game.theater import ControlPoint, TheaterGroundObject, TheaterUnit
 from game.theater.theatergroundobject import (
-    ,
+    CarrierGroundObject,
     GenericCarrierGroundObject,
     LhaGroundObject,
     MissileSiteGroundObject,
@@ -695,7 +695,7 @@ class TgoGenerator:
 
             for ground_object in cp.ground_objects:
                 generator: GroundObjectGenerator
-                if isinstance(ground_object, ):
+                if isinstance(ground_object, CarrierGroundObject):
                     generator = CarrierGenerator(
                         ground_object,
                         cp,
