@@ -61,7 +61,6 @@ from game.theater.theatergroundobject import (
 from game.theater.theatergroup import IadsGroundGroup, SceneryUnit
 from game.unitmap import UnitMap
 from game.utils import Heading, feet, knots, mps
-from missiongenerator.waypointbuilder import StrikeTarge
 
 if TYPE_CHECKING:
     from game import Game
@@ -353,9 +352,7 @@ class MissileSiteGenerator(GroundObjectGenerator):
                     targets.append(cp.position)
         # New code to add TheaterGroundObject targets.
         for g_object in self.game.theater.ground_objects:
-            if g_object.hostile == is_friendly(to_player=False):
-                distance = g_object.position.distance_to_point(self.ground_object.position)
-                if distance < self.missile_site_range:
+            if distance < self.missile_site_range:
                     targets.append(g_object.position)
         return targets
 
