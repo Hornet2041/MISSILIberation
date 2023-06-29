@@ -328,7 +328,6 @@ class MissileSiteGenerator(GroundObjectGenerator):
                 targets = self.possible_missile_targets()
                 if targets:
                     target = random.choice(targets)
-                    )
                     vg.points[0].add_task(FireAtPoint(target))
                     logging.info("Set up fire task for missile group.")
                 else:
