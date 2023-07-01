@@ -350,6 +350,16 @@ class Faction:
             self.remove_vehicle("T64BV")
             self.remove_vehicle("T72M")
             self.remove_vehicle("KORNET")
+        # Currenthill's military assets mod
+        if not mod_settings.mam:
+            self.remove_vehicle("M142_HIMARS_GLSDB")
+            self.remove_vehicle("M142_HIMARS_ATACMS")
+            self.remove_vehicle("M142_HIMARS_GMLRS")
+            self.remove_vehicle("M142_HIMARS_PRSM")
+            self.remove_vehicle("M142_HIMARS_PRSM_ASHM")
+            self.remove_vehicle("CH_M270A1_GLSDB")
+            self.remove_vehicle("CH_M270A1_ATACMS")
+            self.remove_vehicle("CH_M270A1_GMLRS")
         # high digit sams
         if not mod_settings.high_digit_sams:
             self.remove_preset("SA-10B/S-300PS")
