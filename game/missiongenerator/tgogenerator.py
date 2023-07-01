@@ -352,7 +352,7 @@ class MissileSiteGenerator(GroundObjectGenerator):
                     targets.append(cp.position)
         # New code to add TheaterGroundObject targets.
         for g_object in self.game.theater.ground_objects:
-            if g_object.belong_to_control_point.captured != self.ground_object.control_point.captured:
+            if g_object.control_point.captured != self.ground_object.control_point.captured:
                 distance = g_object.position.distance_to_point(self.ground_object.position)
                 if distance < self.missile_site_range:
                     targets.append(g_object.position)
