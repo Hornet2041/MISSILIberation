@@ -206,6 +206,7 @@ class NewGameWizard(QtWidgets.QWizard):
             ov10a_bronco=self.field("ov10a_bronco"),
             frenchpack=self.field("frenchpack"),
             high_digit_sams=self.field("high_digit_sams"),
+            mam=self.field("mam"),
         )
         mod_settings.save_player_settings()
 
@@ -865,6 +866,10 @@ class GeneratorOptions(QtWidgets.QWizardPage):
         high_digit_sams.setChecked(mod_settings.high_digit_sams)
         self.registerField("high_digit_sams", high_digit_sams)
 
+        mam = QtWidgets.QCheckBox()
+        mam.setChecked(mod_settings.mam)
+        self.registerField("mam", mam)
+
         modHelpText = QtWidgets.QLabel(
             "<p>Select the mods you have installed. If your chosen factions support them, you'll be able to use these mods in your campaign.</p>"
         )
@@ -915,6 +920,9 @@ class GeneratorOptions(QtWidgets.QWizardPage):
         modLayout_row += 1
         modLayout.addWidget(QtWidgets.QLabel("High Digit SAMs"), modLayout_row, 0)
         modLayout.addWidget(high_digit_sams, modLayout_row, 1)
+        modLayout_row += 1
+        modLayout.addWidget(QtWidgets.QLabel("CH Military Assets Mod"), modLayout_row, 0)
+        modLayout.addWidget(mam, modLayout_row, 1)
         modSettingsGroup.setLayout(modLayout)
 
         mlayout = QVBoxLayout()
