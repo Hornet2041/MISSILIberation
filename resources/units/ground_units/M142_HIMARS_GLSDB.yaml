@@ -1,0 +1,9 @@
+class: Missile
+description: The Ground Launched Small Diameter Bomb is a weapon developed by Boeing and the Saab Group to allow Boeings GBU-39 Small Diameter Bomb, originally developed for use by aircraft, to be ground-launched from a variety of launchers and configurations.
+introduced: 2023
+manufacturer: Boeing & Saab
+origin: USA
+price: 150
+role: Ground-Launched Precision Strike Bomb
+variants:
+  [CH] M142 HIMARS (GLSDB): null
