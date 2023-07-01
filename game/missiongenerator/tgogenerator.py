@@ -330,14 +330,13 @@ class MissileSiteGenerator(GroundObjectGenerator):
             if vg is not None:
                 targets = self.possible_missile_targets()
                 if targets:
-                    if targets:
                     for _ in range(tasks_per_site):
-                        # Choose a target randomly from the list of targets.
-                        target = random.choice(targets)
-                        # Create a FireAtPoint task with 1 round to be expended.
-                        fire_task = FireAtPoint(target, rounds=1)
-                        # Add the task to the waypoint.
-                        vg.points[0].add_task(fire_task)
+                         # Choose a target randomly from the list of targets.
+                         target = random.choice(targets)
+                         # Create a FireAtPoint task with 1 round to be expended.
+                         fire_task = FireAtPoint(target, rounds=1)
+                         # Add the task to the waypoint.
+                         vg.points[0].add_task(fire_task)
                     logging.info("Set up fire task for missile group.")
                 else:
                     logging.info(
