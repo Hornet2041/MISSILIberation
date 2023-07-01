@@ -1,0 +1,9 @@
+class: Missile
+description: The MGM-140 Army Tactical Missile System is a tactical ballistic missile manufactured by the US defense company Lockheed Martin.
+introduced: 1991
+manufacturer: Lockheed Martin
+origin: USA
+price: 200
+role: Tactical Missile System
+variants:
+  [CH] M142 HIMARS (ATACMS): null
