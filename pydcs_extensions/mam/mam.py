@@ -1,5 +1,5 @@
-# Requires French Pack mod :
-# https://forums.eagle.ru/showthread.php?t=279974
+# Requires Military Assets Mod units, HIMARS units for now :
+# https://www.currenthill.com/
 #
 from dcs import unittype
 
@@ -27,7 +27,7 @@ class M142_HIMARS_ATACMS(unittype.VehicleType):
 
 class M142_HIMARS_GMLRS(unittype.VehicleType):
     id = "M142_HIMARS_GMLRS"
-    name = "[CH] M142 HIMARS (GMLRS)"
+    name = "M142 HIMARS (GMLRS)"
     detection_range = 0
     threat_range = 92000
     air_weapon_dist = 92000
