@@ -319,6 +319,9 @@ class MissileSiteGenerator(GroundObjectGenerator):
         if not self.game.settings.generate_fire_tasks_for_missile_sites:
             return
 
+        # Define the number of fire tasks per missile site.
+        tasks_per_site = 5
+        
         # Note : Only the SCUD missiles group can fire (V1 site cannot fire in game right now)
         # TODO : Should be pre-planned ?
         # TODO : Add delay to task to spread fire task over mission duration ?
@@ -327,10 +330,14 @@ class MissileSiteGenerator(GroundObjectGenerator):
             if vg is not None:
                 targets = self.possible_missile_targets()
                 if targets:
-                    target = random.choice(targets)
-                    # Create a FireAtPoint task with 1 round to be expended.
-                    fire_task = FireAtPoint(target, rounds=1)
-                    vg.points[0].add_task(fire_task)
+                    if targets:
+                    for _ in range(tasks_per_site):
+                        # Choose a target randomly from the list of targets.
+                        target = random.choice(targets)
+                        # Create a FireAtPoint task with 1 round to be expended.
+                        fire_task = FireAtPoint(target, rounds=1)
+                        # Add the task to the waypoint.
+                        vg.points[0].add_task(fire_task)
                     logging.info("Set up fire task for missile group.")
                 else:
                     logging.info(
