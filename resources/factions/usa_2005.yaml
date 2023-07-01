@@ -70,7 +70,11 @@ naval_units:
   - CG Ticonderoga
   - LHA-1 Tarawa
   - CVN-74 John C. Stennis
-missiles: []
+missiles:
+  - M142 HIMARS-GMLRS
+  - [CH] M142 HIMARS (GLSDB)
+  - [CH] M142 HIMARS (ATACMS)
+  - [CH] M142 HIMARS (PrSM)
 air_defense_units:
   - EWR AN/FPS-117 Radar
   - M1097 Heavy HMMWV Avenger
