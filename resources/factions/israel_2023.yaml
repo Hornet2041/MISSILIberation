@@ -45,7 +45,7 @@ preset_groups:
 naval_units:
   - DDG Arleigh Burke IIa
 missiles:
-  - [CH] M142 HIMARS (GMLRS)
+  - M142 HIMARS (GMLRS)
 air_defense_units:
   - SAM Hawk SR (AN/MPQ-50)
   - M163 Vulcan Air Defense System
