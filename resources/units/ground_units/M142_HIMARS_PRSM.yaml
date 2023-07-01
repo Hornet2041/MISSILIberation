@@ -1,0 +1,9 @@
+class: Missile
+description: The Precision Strike Missile is a short-range ballistic missile being developed by the United States Army to replace the MGM-140 ATACMS
+introduced: 2024
+manufacturer: Lockheed Martin Missiles and Fire Control
+origin: USA
+price: 300
+role: Precision Ballistic Missile Strike
+variants:
+  [CH] M142 HIMARS (PrSM): null
