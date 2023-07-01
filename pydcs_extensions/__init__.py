@@ -6,6 +6,7 @@ from .frenchpack import *
 from .hercules import *
 from .highdigitsams import *
 from .jas39 import *
+from .mam import *
 from .ov10a import *
 from .su57 import *
 from .uh60l import *
