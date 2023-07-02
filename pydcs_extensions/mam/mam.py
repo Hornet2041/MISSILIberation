@@ -78,5 +78,46 @@ class CH_M270A1_GMLRS(unittype.VehicleType):
     air_weapon_dist = 92000
     eplrs = True
 
+@vehiclemod
+class CH_CJ10(unittype.VehicleType):
+    id = "CH_CJ10"
+    name = "[CH] CJ-10 GLCM"
+    detection_range = 2000000
+    threat_range = 2000000
+    air_weapon_dist = 2000000
+    eplrs = True
 
+@vehiclemod
+class CH_IskanderM(unittype.VehicleType):
+    id = "CH_IskanderM"
+    name = "[CH] Iskander-M SRBM"
+    detection_range = 500000
+    threat_range = 500000
+    air_weapon_dist = 500000
+    eplrs = True
 
+@vehiclemod
+class CH_IskanderK(unittype.VehicleType):
+    id = "CH_IskanderK"
+    name = "[CH] Iskander-K GLCM"
+    detection_range = 1500000
+    threat_range = 1500000
+    air_weapon_dist = 1500000
+    eplrs = True
+
+@vehiclemod
+class K300P(unittype.VehicleType):
+    id = "K300P"
+    name = "AShM K-300P Bastion-P TEL"
+    detection_range = 400000
+    threat_range = 400000
+    air_weapon_dist = 400000
+    eplrs = True
+
+@vehiclemod
+class MonolitB(unittype.VehicleType):
+    id = "MonolitB"
+    name = "AShM Monolit-B Radar"
+    detection_range = 800000
+    threat_range = 0
+    air_weapon_dist = 0
