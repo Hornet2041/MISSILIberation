@@ -428,7 +428,7 @@ class MissileSiteGroundObject(TheaterGroundObject):
 
     @property
     def purchasable(self) -> bool:
-        return False
+        return True
 
     @property
     def should_head_to_conflict(self) -> bool:
@@ -468,7 +468,7 @@ class CoastalSiteGroundObject(TheaterGroundObject):
 
     @property
     def purchasable(self) -> bool:
-        return False
+        return True
 
     @property
     def should_head_to_conflict(self) -> bool:
