@@ -335,14 +335,6 @@ class MissileSiteGenerator(GroundObjectGenerator):
                          target = random.choice(targets)
                          # Create a FireAtPoint task with 1 round to be expended.
                          fire_task = FireAtPoint(target, rounds=1)
-                              center: Point = copy.copy(targets[0].position)
-                              for target in targets[1:]:
-                                  center += target.position
-                              center /= len(targets)
-                              avg_spacing = 0.0
-                              for t in targets:
-                                  avg_spacing += center.distance_to_point(t.position)
-                              avg_spacing /= len(targets)
                          # Add the task to the waypoint.
                          vg.points[0].add_task(fire_task)
                     logging.info("Set up fire task for missile group.")
