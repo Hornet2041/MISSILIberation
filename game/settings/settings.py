@@ -510,6 +510,7 @@ class Settings:
             "at the start of the mission."
         ),
         default=True,
+    )
     perf_moving_units: bool = boolean_option(
         "Moving ground units",
         page=MISSION_GENERATOR_PAGE,
