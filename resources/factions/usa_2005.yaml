@@ -45,6 +45,7 @@ frontline_units:
   - M1043 HMMWV (M2 HMG)
   - M1045 HMMWV (BGM-71 TOW)
   - M1097 Heavy HMMWV Avenger
+  - Centurion C-RAM
   - M1126 Stryker ICV (M2 HMG)
   - M1128 Stryker Mobile Gun System
   - M1134 Stryker ATGM (BGM-71 TOW)
@@ -79,6 +80,7 @@ air_defense_units:
   - EWR AN/FPS-117 Radar
   - M1097 Heavy HMMWV Avenger
   - M6 Linebacker
+  - Centurion C-RAM
 requirements: {}
 carrier_names:
   - CVN-71 Theodore Roosevelt
