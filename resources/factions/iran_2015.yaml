@@ -72,6 +72,7 @@ requirements: {}
 carrier_names: []
 missiles:
   - SSM SS-1C Scud-B
+  - Shahed 136 LM
 has_jtac: true
 jtac_unit: MQ-9 Reaper
 liveries_overrides:
