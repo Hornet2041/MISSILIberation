@@ -1,5 +1,6 @@
 class: Missile
 price: 50
+reversed_heading: true # Needs to be placed backwards!
 role: Guided Suicide Drone Launcher
 variants:
   Shahed 136 LM: null
