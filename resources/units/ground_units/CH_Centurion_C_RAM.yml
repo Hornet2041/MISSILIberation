@@ -1,5 +1,5 @@
-class: Missile
-price: 20
-role: Missile Battery
+class: AAA
+price: 30
+role: Self-Propelled Anti-Aircraft Gun
 variants:
-  CJ-10 GLCM: {}
+  Centurion C-RAM: {}
