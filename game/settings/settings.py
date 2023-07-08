@@ -501,6 +501,15 @@ class Settings:
         ),
         default=True,
     )
+    generate_fire_tasks_for_ship_groups: bool = boolean_option(
+        "Generate fire tasks for ship groups",
+        page=MISSION_GENERATOR_PAGE,
+        section=PERFORMANCE_SECTION,
+        detail=(
+            "If enabled, ship groups will fire on random targets "
+            "at the start of the mission."
+        ),
+        default=True,
     perf_moving_units: bool = boolean_option(
         "Moving ground units",
         page=MISSION_GENERATOR_PAGE,
