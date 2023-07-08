@@ -1,0 +1,5 @@
+class: AntiShipMissile
+price: 20
+role: Coastal Missile Battery
+variants:
+  AShM K-300P Bastion-P TEL: {}

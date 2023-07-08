@@ -1,0 +1,5 @@
+class: SearchRadar
+price: 20
+role: Coastal Missile Acquisition Radar
+variants:
+  AShM Monolit-B Radar: {}

@@ -1,0 +1,5 @@
+class: Missile
+price: 20
+role: Missile Battery
+variants:
+  CJ-10 GLCM: {}
