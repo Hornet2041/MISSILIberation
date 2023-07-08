@@ -1,5 +1,5 @@
 class: Missile
-price: 20
-role: Missile Battery
+price: 50
+role: Guided Suicide Drone Launcher
 variants:
-  CJ-10 GLCM: {}
+  Shahed 136 LM: null
