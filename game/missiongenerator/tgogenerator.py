@@ -273,7 +273,7 @@ class GroundObjectGenerator:
         )
 
 
-class ShipGroupGenerator(GroundObjectGenerator)
+class ShipGroupGenerator(GroundObjectGenerator):
     @property
     def culled(self) -> bool:
         # Don't cull ship missile sites - their range is long enough to make them easily
