@@ -153,87 +153,6 @@ class GroundObjectGenerator:
             raise RuntimeError(f"Error creating VehicleGroup for {group_name}")
         return vehicle_group
 
-    def create_ship_group(
-            self,
-            group_name: str,
-            units: list[TheaterUnit],
-            frequency: Optional[RadioFrequency] = None,
-        ) -> ShipGroup:
-        ship_group: Optional[ShipGroup] = None
-        tasks_per_ship = 18  # Define the number of fire tasks per ship
-        for unit in units:
-            assert issubclass(unit.type, ShipType)
-            if ship_group is None:
-                ship_group = self.m.ship_group(
-                    self.country,
-                    group_name,
-                    unit.type,
-                    position=unit.position,
-                    heading=unit.position.heading.degrees,
-                )
-                if frequency:
-                    ship_group.set_frequency(frequency.hertz)
-                ship_group.units[0].name = unit.unit_name
-                self.set_alarm_state(ship_group)
-            else:
-                ship_unit = self.m.ship(unit.unit_name, unit.type)
-                if frequency:
-                    ship_unit.set_frequency(frequency.hertz)
-                ship_unit.position = unit.position
-                ship_unit.heading = unit.position.heading.degrees
-                ship_group.add_unit(ship_unit)
-            self._register_theater_unit(ship_group.id, unit, ship_group.units[-1])
-        if ship_group is None:
-            raise RuntimeError(f"Error creating ShipGroup for {group_name}")
-
-        # Adding the missile firing logic
-        if self.game.settings.generate_fire_tasks_for_ship_groups:
-            targets = self.possible_missile_targets(ship_group)
-            if targets:
-                for _ in range(tasks_per_ship):
-                    target = random.choice(targets)
-                    fire_task = FireAtPoint(target, rounds=1)
-                    for unit in ship_group.units:
-                        unit.add_task(fire_task)
-                logging.info("Set up fire tasks for ship group.")
-            else:
-                logging.info(
-                    "Couldn't setup ship group to fire, no valid target in range."
-                )
-
-        return ship_group
-
-    def possible_missile_targets(self, ship_group: ShipGroup) -> List[Point]:
-        """
-        Find enemy control points in range
-        :return: List of possible missile targets
-        """
-        targets: List[Point] = []
-        for cp in self.game.theater.controlpoints:
-            if cp.captured != self.ground_object.control_point.captured:
-                distance = cp.position.distance_to_point(ship_group.position)
-                if distance < self.ship_group_range(ship_group):
-                    targets.append(cp.position)
-
-        for g_object in self.game.theater.ground_objects:
-            if g_object.control_point.captured != self.ground_object.control_point.captured:
-                distance = g_object.position.distance_to_point(ship_group.position)
-                if distance < self.ship_group_range(ship_group):
-                    targets.append(g_object.position)
-        return targets
-
-    def ship_group_range(self, ship_group: ShipGroup) -> int:
-        """
-        Get the ship group range
-        :return: Ship group range
-        """
-        group_range = 0
-        for unit in ship_group.units:
-            if unit.type in vehicle_map:
-                if vehicle_map[unit.type].threat_range > group_range:
-                    group_range = vehicle_map[unit.type].threat_range
-        return group_range
-
     def create_static_group(self, unit: TheaterUnit) -> None:
         static_group = self.m.static_group(
             country=self.country,
@@ -354,6 +273,105 @@ class GroundObjectGenerator:
         )
 
 
+class ShipGroupGenerator(GroundObjectGenerator)
+    @property
+    def culled(self) -> bool:
+        # Don't cull ship missile sites - their range is long enough to make them easily
+        # culled despite being a threat.
+        return False
+
+    def generate(self) -> None:
+        super(ShipGroupGenerator, self).generate()
+
+        if not self.game.settings.generate_fire_tasks_for_ship_groups:
+            return
+    
+    def create_ship_group(
+            self,
+            group_name: str,
+            units: list[TheaterUnit],
+            frequency: Optional[RadioFrequency] = None,
+        ) -> ShipGroup:
+        ship_group: Optional[ShipGroup] = None
+        tasks_per_ship = 18  # Define the number of fire tasks per ship
+        for unit in units:
+            assert issubclass(unit.type, ShipType)
+            if ship_group is None:
+                ship_group = self.m.ship_group(
+                    self.country,
+                    group_name,
+                    unit.type,
+                    position=unit.position,
+                    heading=unit.position.heading.degrees,
+                )
+                if frequency:
+                    ship_group.set_frequency(frequency.hertz)
+                ship_group.units[0].name = unit.unit_name
+                self.set_alarm_state(ship_group)
+            else:
+                ship_unit = self.m.ship(unit.unit_name, unit.type)
+                if frequency:
+                    ship_unit.set_frequency(frequency.hertz)
+                ship_unit.position = unit.position
+                ship_unit.heading = unit.position.heading.degrees
+                ship_group.add_unit(ship_unit)
+            self._register_theater_unit(ship_group.id, unit, ship_group.units[-1])
+        if ship_group is None:
+            raise RuntimeError(f"Error creating ShipGroup for {group_name}")
+
+        # Adding the missile firing logic
+        if self.game.settings.generate_fire_tasks_for_ship_groups:
+            targets = self.possible_missile_targets(ship_group)
+            if targets:
+                for _ in range(tasks_per_ship):
+                    target = random.choice(targets)
+                    fire_task = FireAtPoint(target, rounds=1)
+                    for unit in ship_group.units:
+                        unit.add_task(fire_task)
+                logging.info("Set up fire tasks for ship group.")
+            else:
+                logging.info(
+                    "Couldn't setup ship group to fire, no valid target in range."
+                )
+
+        return ship_group
+
+    def possible_missile_targets(self, ship_group: ShipGroup) -> List[Point]:
+        """
+        Find enemy control points in range
+        :return: List of possible missile targets
+        """
+        targets: List[Point] = []
+        for cp in self.game.theater.controlpoints:
+            if cp.captured != self.ground_object.control_point.captured:
+                distance = cp.position.distance_to_point(ship_group.position)
+                if distance < self.ship_group_range(ship_group):
+                    targets.append(cp.position)
+
+        for g_object in self.game.theater.ground_objects:
+            if g_object.control_point.captured != self.ground_object.control_point.captured:
+                distance = g_object.position.distance_to_point(ship_group.position)
+                if distance < self.ship_group_range(ship_group):
+                    targets.append(g_object.position)
+        return targets
+
+    def ship_group_range(self, ship_group: ShipGroup) -> int:
+        """
+        Get the ship group range
+        :return: Ship group range
+        """
+        group_range = 0
+        for group in self.ground_object.groups:
+            vg = self.m.find_group(group.group_name)
+            if vg is not None:
+                for u in vg.units:
+                    unit_data = vehicle_map.get(u.type)
+                    if unit_data is not None:
+                        threat_range = unit_data.get('threat_range')
+                        if threat_range is not None and threat_range > group_range:
+                            group_range = threat_range
+        return group_range
+    
 class MissileSiteGenerator(GroundObjectGenerator):
     @property
     def culled(self) -> bool:
