@@ -121,8 +121,6 @@ class GroundObjectGenerator:
                     ship_units.append(unit)
             if vehicle_units:
                 self.create_vehicle_group(group.group_name, vehicle_units)
-            if ship_units:
-                self.create_ship_group(group.group_name, ship_units)
 
     def create_vehicle_group(
         self, group_name: str, units: list[TheaterUnit]
